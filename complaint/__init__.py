@@ -2,6 +2,8 @@ import os
 from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+#from .models import User
 
 # init SQLAlchemy so we can use it later in our models
 db = SQLAlchemy()
@@ -30,6 +32,7 @@ def create_app():
 
         # Initialize Global db
         db.create_all()
+        migrate = Migrate(app, db)
 
 #    # blueprint for auth routes in our app
 #    from .auth import auth as auth_blueprint
