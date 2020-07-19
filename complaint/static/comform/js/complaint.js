@@ -1,27 +1,30 @@
 
-$(document).ready(function() {
-    $("#Test").click( function(event){
-        alert(event.target.id);
-        $("#py1").toggle();
+// $(document).ready(function () {
+//   $("#Test").click(function (event) {
+//     alert(event.target.id);
+//     $("#py1").toggle();
+//   });
+// });
+
+$(document).ready(function () {
+  $('button[data-select="form-button"]').each(function () {
+    let buttonId = $(this).data('id')
+    $(this).bind('click', function () {
+      $(`form[data-select="form"][data-id="${buttonId}"]`).toggle();
     });
+  });
 });
 
 
-
-
-
-
-
-
-//$(document).ready(function() {
-//    $("button.py").each(function(){
-//        $(this).bind('click', function(){
-//            $("form.p-3").each(function(){
-//                $(this).toggle();
-//            });
-//        });
-//    });
-//});
+// $(document).ready(function () {
+//   $("button.py").each(function () {
+//     $(this).bind('click', function () {
+//       $("form.p-3").each(function () {
+//         $(this).toggle();
+//       });
+//     });
+//   });
+// });
 
 //$(document).ready(function() {
 //    $("div.pyy").html('<button id="Test" class="py" type="button" onclick="Openform()";><ion-icon size="large" name="create"></ion-icon></button>');
