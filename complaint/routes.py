@@ -28,7 +28,7 @@ def form():
 
 def request_api(data):
     data["category"] = [{"name":"Selling"}]
-    response = requests.post('https://complaint.microapi.dev/v1/complaint/new', headers={'Content-Type': 'application/json'}, data=json.dumps(data))
+    response = requests.post('http://complaint-microapi.herokuapp.com/v1/complaint/new', headers={'Content-Type': 'application/json'}, data=json.dumps(data))
     print(response.text)
     if response.status_code != 201:
 
@@ -42,19 +42,19 @@ def request_api(data):
 
 @main_bp.route('/delete/<_id>', methods=['GET'])
 def delete(_id):
-    response = requests.delete('https://complaint.microapi.dev/v1/complaint/delete/'+str(_id), headers={'Content-Type': 'application/json'})
+    response = requests.delete('http://complaint-microapi.herokuapp.com/v1/complaint/delete/'+str(_id), headers={'Content-Type': 'application/json'})
     return redirect(url_for("main_bp.form"))
 
 @main_bp.route('/update/<_id>', methods=["POST"])
 def update(_id):
     data = request.form.to_dict()
     data["status"] =  "closed"
-    response = requests.patch('https://complaint.microapi.dev/v1/complaint/update/'+str(_id), headers={'Content-Type': 'application/json'}, data=json.dumps(data))
+    response = requests.patch('http://complaint-microapi.herokuapp.com/v1/complaint/update/'+str(_id), headers={'Content-Type': 'application/json'}, data=json.dumps(data))
     print(data, response.text)
     return redirect(url_for("main_bp.form"))
 
 
 def get_complaints():
-    response = requests.get('https://complaint.microapi.dev/v1/complaint/all')
+    response = requests.get('http://complaint-microapi.herokuapp.com/v1/complaint/all')
     all_complaints = response.json()
     return all_complaints
