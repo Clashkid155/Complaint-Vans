@@ -27,8 +27,9 @@ def form():
 
 
 def request_api(data):
-    #data["category"] = [{"name":"Selling"}]
+    data["category"] = [{"name":"Selling"}]
     response = requests.post('https://complaint.microapi.dev/v1/complaint/new', headers={'Content-Type': 'application/json'}, data=json.dumps(data))
+    print(response.text)
     if response.status_code != 201:
 
     ## flash is not working yet
