@@ -10,9 +10,7 @@ $(document).ready(function () {
   $('button[data-select="form-button"]').each(function () {
     let buttonId = $(this).data('id')
     $(this).bind('click', function () {
-      $(`form[data-select="form"][data-id="${buttonId}"]`).each(function () {
-        $(this).toggle();
-      });
+      $(`form[data-select="form"][data-id="${buttonId}"]`).toggle();
     });
   });
 });
