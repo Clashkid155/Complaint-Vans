@@ -22,7 +22,7 @@ def login():
     if request.method == 'POST':
         data = request.form.to_dict()
         email, password = data.values()
-        user = User.objects(email=email).first()
+        user = User.query.filter_by(email=email).first()
         if user:
             if user.check_password(password=password):
                 login_user(user, remember=False)
@@ -43,16 +43,16 @@ def signup():
         name = request.form.get('name')
         email = request.form.get('email')
         password = request.form.get("password")
-        user_check = User.objects(email=email).first()
+        user_check = User.query.filter_by(email=email).first()
         if user_check is None:
             user = User(
                 name=name,
                 email=email,
                 password=generate_password_hash(password)
             )
-            user.save()
-            #db.session.add(user)
-            #db.session.commit()
+            #user.save()
+            db.session.add(user)
+            db.session.commit()
             login_user(user)
             return redirect(url_for("main_bp.form"))
 
@@ -72,9 +72,9 @@ def logout_page():
 def load_user(user_id):
     """Check if user is logged-in on every page load."""
     if user_id is not None:
-        #return User.query.get(user_id)
+        return User.query.get(user_id)
         #pass
-        return User.objects(pk=user_id).first()
+        #return User.objects(pk=user_id).first()
     return None
 
 

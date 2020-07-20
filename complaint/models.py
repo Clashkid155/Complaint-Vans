@@ -3,24 +3,23 @@ import datetime
 from flask_login import UserMixin
 from werkzeug.security import check_password_hash, generate_password_hash
 
-class User(UserMixin, db.Document):
+class User(UserMixin, db.Model):
     """Model for user accounts."""
-    name = db.StringField(required=True)
-    email = db.StringField(required=True, unique=True)
-    password =  db.StringField(required=True)
-    created_on = db.DateTimeField(default=datetime.datetime.utcnow)
+   # name = db.StringField(required=True)
+    #email = db.StringField(required=True, unique=True)
+    #password =  db.StringField(required=True)
+    #created_on = db.DateTimeField(default=datetime.datetime.utcnow)
 
+    __tablename__ = 'complaint-users'
 
-    # __tablename__ = 'complaint-users'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, nullable=False, unique=False)
+    email = db.Column(db.String(40), unique=True, nullable=False)
 
-    #id = db.Column(db.Integer, primary_key=True)
-    #name = db.Column(db.String, nullable=False, unique=False)
-    #email = db.Column(db.String(40), unique=True, nullable=False)
-
-    #password = db.Column(db.String(200), primary_key=False, unique=False, nullable=False)
-    #website = db.Column(db.String(60), index=False, unique=False, nullable=True)
-    #created_on = db.Column(db.DateTime, index=False, unique=False, nullable=True)
-    #last_login = db.Column(db.DateTime, index=False, unique=False, nullable=True)
+    password = db.Column(db.String(200), primary_key=False, unique=False, nullable=False)
+    website = db.Column(db.String(60), index=False, unique=False, nullable=True)
+    created_on = db.Column(db.DateTime, index=False, unique=False, nullable=True)
+    last_login = db.Column(db.DateTime, index=False, unique=False, nullable=True)
 
     def set_password(self, password):
         """Create hashed password."""
@@ -35,7 +34,7 @@ class User(UserMixin, db.Document):
 
 #def init_db():
 #if __name__ == '__main__':
- #   db.create_all()
+db.create_all()
 
     ## Create a test user
     #new_user = User('a@a.com', 'aaaaaaaa')
