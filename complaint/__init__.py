@@ -17,7 +17,8 @@ def create_app():
     BASEDIR = os.path.abspath(os.path.dirname(__name__))
     app.config['SECRET_KEY'] = 'yu7a8 aiwiiais aus_sisiwi'
     app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
-    app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///{}".format(
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') or \
+        "sqlite:///{}".format(
         os.path.join(BASEDIR, "users.db"))
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     #if os.get
