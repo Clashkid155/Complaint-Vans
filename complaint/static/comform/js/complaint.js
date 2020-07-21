@@ -14,6 +14,12 @@ $(document).ready(function () {
     });
   });
 });
+$(document).ready(function() {
+    $('button#log').click(function(){
+        alert("Hello");
+    });
+
+});
 
 
 // $(document).ready(function () {

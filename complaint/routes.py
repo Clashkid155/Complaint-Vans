@@ -77,3 +77,10 @@ def new_comment(_id):
         flash(u'Comment has successfully being submitted!!', 'message')
     else:
         flash(u'Please try again.', 'error')
+    return "Hi"
+
+@main_bp.route("/about_us", methods=['GET'])
+def about():
+    return render_template("about_us.html")
+
+
