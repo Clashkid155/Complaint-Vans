@@ -101,7 +101,7 @@
                         {% endif %}
                         {% endwith %}
                         {% block content %}
-                        {% for complaint in value['result'] %}
+                        {% for complaint in value['result'] if complaint.user_id == cu%}
                         <article class="post">
                             <!-- Delete icon -->
                             <div class="text-right">
@@ -181,8 +181,7 @@
                                                 <textarea class="form-control rounded-lg " name="message" placeholder="Enter Your Message" required></textarea>
                                             </div>
                                             <div class="form-group">
-                                                <label class="h6 mb-0">User ID</label>
-                                                <input type="number" name="user_id" placeholder="User Id" class="form-control rounded-lg " required>
+                                                <input type="hidden" name="user_id" placeholder="User Id" class="form-control rounded-lg" value="{{ cu }}" required>
                                             </div>
                                             {% for message in get_flashed_messages() %}
                                             <div class="alert alert-warning">

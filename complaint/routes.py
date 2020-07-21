@@ -23,7 +23,7 @@ def form():
         request_api(data)
         texts = get_complaints()
         return redirect(url_for("main_bp.form"))
-    return render_template("index.html", value=get_complaints())
+    return render_template("index.html", value=get_complaints(), cu=current_user.id)
 
 @main_bp.route('/comment', methods=['POST', 'GET'])
 def comm(comms=None):
