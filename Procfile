@@ -1,4 +1,4 @@
-web: gunicorn wsgi:app
-init: flask db init
-migrate: flask db migrate
+#init: flask db init
+#migrate: flask db migrate
 upgrade: flask db upgrade
+web: gunicorn wsgi:app
